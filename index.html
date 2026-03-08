@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Project Apollo · Actual General Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#E8112d;
+  --black:#111;
+  --gray:#767676;
+  --lgray:#e8e8e8;
+  --xlgray:#f4f4f4;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'Inter',sans-serif;
+}
+html,body{background:#fff;color:var(--black);font-family:var(--sans);}
+body{-webkit-font-smoothing:antialiased;}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:60px;
+  border-bottom:1px solid var(--lgray);
+  position:sticky;top:0;background:#fff;z-index:100;
+}
+.nav-brand{
+  font:700 18px/1 var(--serif);
+  color:var(--black);letter-spacing:-.01em;
+}
+.nav-right{
+  display:flex;align-items:center;gap:32px;
+}
+.nav-logo{font:900 16px/1 var(--serif);color:var(--red);letter-spacing:-.01em;}
+.nav-live{
+  display:flex;align-items:center;gap:6px;
+  font:400 11px/1 var(--sans);color:var(--gray);
+}
+.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* ── HERO ── */
+.hero{
+  padding:80px 40px 72px;
+  border-bottom:1px solid var(--lgray);
+}
+.hero-kicker{
+  font:400 11px/1 var(--sans);
+  color:var(--red);letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:32px;
+}
+.hero-kicker::before{content:'|';color:var(--red);}
+.hero-h1{
+  font:700 clamp(52px,8vw,112px)/1.0 var(--serif);
+  color:var(--red);
+  letter-spacing:-.03em;
+  max-width:1000px;
+  margin-bottom:48px;
+}
+.hero-body{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  max-width:900px;
+}
+@media(min-width:680px){.hero-body{grid-template-columns:1fr 1fr;gap:64px;}}
+.hero-sub{
+  font:300 16px/1.75 var(--sans);
+  color:var(--gray);
+}
+.hero-cta-wrap{display:flex;align-items:flex-end;}
+.hero-cta{
+  display:inline-block;
+  font:500 12px/1 var(--sans);
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--red);
+  text-decoration:none;
+  border-bottom:1px solid var(--red);
+  padding-bottom:3px;
+  transition:opacity .12s;
+}
+.hero-cta:hover{opacity:.6;}
+.hero-phe{
+  font:400 10px/1 var(--sans);
+  color:var(--gray);letter-spacing:.1em;text-transform:uppercase;
+  margin-top:10px;
+}
+
+/* ── STATS ── */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--lgray);
+}
+@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{
+  padding:32px 40px;
+  border-right:1px solid var(--lgray);
+}
+.stat:last-child{border-right:none;}
+.stat-n{
+  font:700 40px/1 var(--serif);
+  color:var(--red);letter-spacing:-.02em;margin-bottom:6px;
+}
+.stat-l{
+  font:400 11px/1.5 var(--sans);
+  color:var(--gray);letter-spacing:.04em;text-transform:uppercase;
+}
+
+/* ── SECTION HEADER (Cooley-style) ── */
+.sec-hdr{
+  padding:48px 40px 0;
+}
+.sec-kicker{
+  font:400 11px/1 var(--sans);color:var(--red);
+  letter-spacing:.12em;text-transform:uppercase;
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;
+}
+.sec-kicker::before{content:'|';color:var(--red);}
+.sec-h{
+  font:700 clamp(36px,5vw,64px)/1.0 var(--serif);
+  color:var(--red);letter-spacing:-.02em;
+  margin-bottom:16px;
+}
+.sec-sub{
+  font:300 15px/1.75 var(--sans);
+  color:var(--gray);max-width:560px;
+  padding:0 40px;margin-bottom:40px;
+}
+
+/* ── COHORT ── */
+.cohort-wrap{padding:0 40px 48px;}
+.cohort-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--lgray);
+  border-left:1px solid var(--lgray);
+}
+@media(min-width:540px){.cohort-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:900px){.cohort-grid{grid-template-columns:repeat(6,1fr);}}
+.p-card{
+  padding:20px 16px;
+  border-right:1px solid var(--lgray);
+  border-bottom:1px solid var(--lgray);
+  cursor:pointer;
+  transition:background .1s;
+  -webkit-tap-highlight-color:transparent;
+  position:relative;
+}
+.p-card:hover{background:var(--xlgray);}
+.p-card.active{background:var(--xlgray);}
+.p-card.active::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red);
+}
+.p-init{
+  font:400 10px/1 var(--sans);color:var(--gray);
+  letter-spacing:.1em;margin-bottom:10px;
+}
+.p-name{
+  font:700 13px/1.3 var(--serif);color:var(--black);margin-bottom:3px;
+}
+.p-role{font:300 10px/1.4 var(--sans);color:var(--gray);}
+
+/* ── PROFILE BAR ── */
+.profile-bar{
+  margin:0 40px 24px;padding:18px 0;
+  border-top:2px solid var(--red);
+  display:none;
+}
+.profile-bar.show{display:block;}
+.pb-name{
+  font:700 14px/1 var(--serif);color:var(--red);margin-bottom:6px;
+}
+.pb-bio{font:300 13px/1.65 var(--sans);color:var(--gray);}
+
+/* ── TOOL ── */
+.tool-outer{padding:0 40px 80px;} 
+.tool-wrap{
+  display:grid;
+  border:1px solid var(--lgray);
+}
+@media(min-width:860px){.tool-wrap{grid-template-columns:1fr 1fr;}}
+.tool-panel{border-right:1px solid var(--lgray);}
+.tool-panel:last-child{border-right:none;}
+.tool-lbl{
+  padding:12px 20px;border-bottom:1px solid var(--lgray);
+  font:500 10px/1 var(--sans);color:var(--gray);
+  letter-spacing:.12em;text-transform:uppercase;
+  background:var(--xlgray);
+}
+.tool-qarea{
+  width:100%;background:transparent;border:none;
+  font:300 14px/1.75 var(--sans);color:var(--black);
+  padding:20px;resize:none;min-height:160px;outline:none;
+  -webkit-appearance:none;
+}
+.tool-cands{padding:4px 20px 12px;}
+.t-row{display:flex;gap:8px;margin-bottom:2px;align-items:flex-start;}
+.ti{
+  flex:1;background:transparent;border:none;
+  border-bottom:1px solid var(--lgray);
+  font:300 13px/1.5 var(--sans);color:var(--black);
+  padding:8px 0;resize:none;outline:none;
+  min-height:32px;-webkit-appearance:none;
+  transition:border-color .12s;
+}
+.ti:focus{border-bottom-color:var(--black);}
+.t-del{
+  flex-shrink:0;width:20px;height:20px;
+  background:none;border:none;color:var(--lgray);
+  cursor:pointer;font-size:14px;padding:0;
+  transition:color .1s;margin-top:6px;
+}
+.t-del:hover{color:var(--red);}
+.add-t-btn{
+  background:none;border:none;
+  font:400 10px/1 var(--sans);color:var(--gray);
+  letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;padding:10px 0;
+  transition:color .12s;display:block;
+}
+.add-t-btn:hover{color:var(--black);}
+.run-bar{
+  padding:16px 20px;border-top:1px solid var(--lgray);
+}
+#run-btn{
+  background:#fff;color:var(--red);
+  border:1px solid var(--red);
+  font:500 11px/1 var(--sans);
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:12px 28px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:all .12s;
+}
+#run-btn:hover{background:var(--red);color:#fff;}
+#run-btn:disabled{opacity:.4;cursor:default;}
+
+/* ── RESULTS ── */
+#results{min-height:180px;padding:20px;}
+.r-empty{
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:160px;gap:10px;
+}
+.r-empty-glyph{font:400 32px/1 var(--serif);color:var(--lgray);}
+.r-empty-txt{font:300 11px/1.6 var(--sans);color:var(--gray);text-align:center;}
+.r-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:12px;margin-bottom:12px;
+  border-bottom:2px solid var(--red);
+}
+.r-head-name{font:700 14px/1 var(--serif);color:var(--red);}
+.r-head-meta{font:300 10px/1 var(--sans);color:var(--gray);}
+.r-item{opacity:0;animation:fin .22s forwards;}
+@keyframes fin{to{opacity:1;}}
+.r-row{
+  display:flex;align-items:baseline;gap:14px;
+  padding:10px 0;border-bottom:1px solid var(--lgray);
+}
+.r-item:first-child .r-row{padding:16px 0 12px;}
+.r-num{font:400 11px/1 var(--sans);color:var(--gray);width:16px;flex-shrink:0;}
+.r-num.first{color:var(--red);font-weight:700;}
+.r-text{flex:1;font:300 14px/1.4 var(--sans);color:var(--gray);}
+.r-text.first{font:700 20px/1.2 var(--serif);color:var(--red);}
+.r-score{font:500 13px/1 var(--sans);flex-shrink:0;font-feature-settings:'tnum';}
+.r-score.hi{color:var(--red);}
+.r-score.med{color:var(--gray);}
+.r-score.lo{color:var(--lgray);}
+.r-item:first-child .r-score{font-size:20px;}
+.r-bar{height:1px;background:var(--lgray);}
+.r-fill{height:1px;background:var(--red);transition:width .7s cubic-bezier(.16,1,.3,1);}
+.r-fill.med{background:var(--lgray);}
+.r-fill.lo{background:#eee;}
+.r-summary{
+  margin-top:16px;padding:14px 0;
+  border-top:1px solid var(--lgray);
+  font:300 12px/1.75 var(--sans);color:var(--gray);
+}
+.r-summary strong{font:700 13px/1 var(--serif);color:var(--black);}
+
+/* ── EXPERIMENTS ── */
+.exp-outer{
+  border-top:1px solid var(--lgray);
+  border-bottom:1px solid var(--lgray);
+}
+.exp-card{border-bottom:1px solid var(--lgray);}
+.exp-card:last-child{border-bottom:none;}
+.exp-hdr{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:28px 40px;cursor:pointer;
+  transition:background .1s;
+  -webkit-tap-highlight-color:transparent;
+}
+.exp-hdr:hover{background:var(--xlgray);}
+.exp-card.open .exp-hdr{background:var(--xlgray);}
+.exp-who{
+  font:400 11px/1 var(--sans);color:var(--red);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;
+}
+.exp-title{
+  font:700 clamp(18px,2.5vw,26px)/1.2 var(--serif);
+  color:var(--black);
+}
+.exp-tog{
+  font:300 28px/1 var(--sans);color:var(--lgray);
+  flex-shrink:0;transition:transform .2s,color .15s;padding-top:4px;
+}
+.exp-card.open .exp-tog{transform:rotate(45deg);color:var(--red);}
+
+.exp-body{display:none;border-top:1px solid var(--lgray);}
+.exp-card.open .exp-body{display:block;}
+
+/* Inner exp sections */
+.exp-section{border-bottom:1px solid var(--lgray);padding:20px 40px;}
+.exp-section:last-child{border-bottom:none;}
+.exp-section-hdr{
+  font:500 10px/1 var(--sans);color:var(--gray);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.exp-editable-tag{
+  font:400 10px/1 var(--sans);color:var(--red);
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.exp-cands-reset{
+  background:none;border:none;
+  font:400 10px/1 var(--sans);color:var(--gray);
+  cursor:pointer;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:underline;padding:0;transition:color .1s;
+}
+.exp-cands-reset:hover{color:var(--black);}
+.exp-qtabs{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.exp-qtab{
+  padding:7px 16px;background:#fff;
+  font:400 10px/1 var(--sans);color:var(--gray);
+  border:1px solid var(--lgray);cursor:pointer;
+  letter-spacing:.1em;text-transform:uppercase;
+  transition:all .1s;-webkit-tap-highlight-color:transparent;
+}
+.exp-qtab.active{background:var(--red);color:#fff;border-color:var(--red);}
+.exp-qtab:hover:not(.active){border-color:var(--gray);color:var(--black);}
+.exp-qpane{display:none;}
+.exp-qpane.active{display:block;}
+.exp-query-box{
+  width:100%;background:var(--xlgray);
+  border:none;border-left:3px solid var(--red);
+  font:300 13px/1.75 var(--sans);color:var(--black);
+  padding:14px 16px;resize:vertical;min-height:80px;
+  outline:none;-webkit-appearance:none;
+  transition:border-color .12s;
+}
+.exp-query-box:focus{background:#fff;border-left-color:var(--black);}
+.exp-cand-row{
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--lgray);
+}
+.exp-cand-row:last-child{border-bottom:none;}
+.exp-cand-num{
+  font:400 10px/1 var(--sans);color:var(--lgray);
+  width:18px;flex-shrink:0;text-align:right;
+}
+.exp-cand-input{
+  flex:1;background:transparent;border:none;
+  font:300 13px/1 var(--sans);color:var(--gray);
+  outline:none;padding:10px 0;height:36px;
+  -webkit-appearance:none;transition:color .12s;
+}
+.exp-cand-input:focus{color:var(--black);}
+.exp-cand-del{
+  flex-shrink:0;width:20px;height:20px;
+  background:none;border:none;color:var(--lgray);
+  cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  transition:color .1s;
+}
+.exp-cand-del:hover{color:var(--red);}
+.exp-add-cand-btn{
+  display:block;width:100%;background:none;border:none;
+  font:400 10px/1 var(--sans);color:var(--gray);
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:10px 0;cursor:pointer;text-align:left;
+  transition:color .1s;margin-top:4px;
+}
+.exp-add-cand-btn:hover{color:var(--black);}
+.exp-run-bar{
+  display:flex;align-items:center;gap:12px;
+  padding:16px 40px;border-bottom:1px solid var(--lgray);
+  background:var(--xlgray);
+}
+.exp-run-btn{
+  background:#fff;color:var(--red);
+  border:1px solid var(--red);
+  font:500 10px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;
+  padding:10px 22px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all .12s;
+}
+.exp-run-btn:hover{background:var(--red);color:#fff;}
+.exp-run-btn:disabled{opacity:.35;cursor:default;}
+.exp-results{padding:20px 40px;}
+.exp-results:empty{display:none;}
+
+/* Exp result items */
+.exp-r-item{opacity:0;animation:fin .2s forwards;margin-bottom:1px;}
+.exp-r-row{
+  display:flex;align-items:baseline;gap:12px;
+  padding:9px 0;border-bottom:1px solid var(--lgray);
+}
+.exp-r-item:first-child .exp-r-row{padding:14px 0 10px;}
+.exp-r-num{font:400 10px/1 var(--sans);color:var(--lgray);width:14px;flex-shrink:0;}
+.exp-r-num.first{color:var(--red);font-weight:700;}
+.exp-r-text{flex:1;font:300 13px/1.4 var(--sans);color:var(--gray);}
+.exp-r-text.first{font:700 17px/1.2 var(--serif);color:var(--red);}
+.exp-r-score{font:500 12px/1 var(--sans);flex-shrink:0;font-feature-settings:'tnum';}
+.exp-r-score.hi{color:var(--red);}
+.exp-r-score.med{color:var(--gray);}
+.exp-r-score.lo{color:var(--lgray);}
+.exp-r-bar{height:1px;background:var(--lgray);}
+.exp-r-fill{height:1px;background:var(--red);transition:width .6s cubic-bezier(.16,1,.3,1);}
+.exp-r-fill.med{background:var(--lgray);}
+.exp-r-fill.lo{background:#eee;}
+
+/* ── HOW ── */
+.how-outer{padding:0 40px 80px;}
+.how-grid{
+  display:grid;
+  border:1px solid var(--lgray);
+}
+@media(min-width:640px){.how-grid{grid-template-columns:repeat(3,1fr);}}
+.how-card{
+  padding:36px 28px;
+  border-right:1px solid var(--lgray);
+  border-bottom:1px solid var(--lgray);
+}
+.how-card:last-child{border-right:none;}
+.how-n{
+  font:400 11px/1 var(--sans);color:var(--red);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;
+}
+.how-title{font:700 18px/1.2 var(--serif);color:var(--black);margin-bottom:10px;}
+.how-desc{font:300 13px/1.75 var(--sans);color:var(--gray);}
+
+/* ── FOOTER ── */
+footer{
+  border-top:2px solid var(--red);
+  padding:28px 40px;
+  display:flex;flex-wrap:wrap;gap:16px;
+  align-items:baseline;justify-content:space-between;
+}
+.footer-brand{
+  font:700 16px/1 var(--serif);color:var(--red);
+}
+.footer-legal{
+  font:300 11px/1.6 var(--sans);color:var(--gray);
+}
+
+/* ── SPINNER ── */
+.spinner{
+  width:12px;height:12px;
+  border:1.5px solid rgba(0,0,0,.15);
+  border-top-color:var(--red);
+  border-radius:50%;
+  animation:spin .7s linear infinite;display:inline-block;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+@media(max-width:600px){
+  nav,
+  .hero,.stats .stat,.sec-hdr,.sec-sub,
+  .cohort-wrap,.tool-outer,.how-outer,
+  .exp-hdr,.exp-section,.exp-run-bar,.exp-results,
+  footer{padding-left:20px;padding-right:20px;}
+  .hero-h1{letter-spacing:-.02em;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Actual General Intelligence</div>
+  <div class="nav-right">
+    <div class="nav-logo">Project Apollo</div>
+    <div class="nav-live"><div class="nav-dot"></div> Live</div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1 class="hero-h1">Your body has been<br>telling the truth.</h1>
+  <div class="hero-body">
+    <p class="hero-sub">Six patients. Six conditions no system could fully explain. One engine that measures geometric coherence between a condition description and any treatment. Not AI. Not probability. Geometry.</p>
+    <div class="hero-cta-wrap">
+      <a class="hero-cta" href="#tool">Try the Patient Hypothesis Engine &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat">
+    <div class="stat-n">26MB</div>
+    <div class="stat-l">Engine size &middot; CPU only</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">72D</div>
+    <div class="stat-l">Geometric space</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">0</div>
+    <div class="stat-l">Hallucination surface</div>
+  </div>
+  <div class="stat">
+    <div class="stat-n">p=10&#8315;&#8309;&#8309;</div>
+    <div class="stat-l">Statistical significance</div>
+  </div>
+</div>
+
+<div class="sec-hdr">
+  <div class="sec-kicker">01 &middot; Founding Cohort</div>
+  <h2 class="sec-h">The patients<br>behind the data.</h2>
+</div>
+<p class="sec-sub">Select a profile to load their condition, query, and treatment candidates into the engine below.</p>
+<div class="cohort-wrap">
+  <div class="cohort-grid">
+    <div class="p-card" id="pc-tyler" onclick="loadMember('tyler')">
+      <div class="p-init">TO</div>
+      <div class="p-name">Tyler Orion</div>
+      <div class="p-role">MBA &middot; PHE Co-Founder</div>
+    </div>
+    <div class="p-card" id="pc-janice" onclick="loadMember('janice')">
+      <div class="p-init">JO</div>
+      <div class="p-name">Janice O&rsquo;Connor</div>
+      <div class="p-role">12yr Recovery Pioneer</div>
+    </div>
+    <div class="p-card" id="pc-dennis" onclick="loadMember('dennis')">
+      <div class="p-init">DO</div>
+      <div class="p-name">Dennis O&rsquo;Connor</div>
+      <div class="p-role">Primary Caregiver</div>
+    </div>
+    <div class="p-card" id="pc-jennifer" onclick="loadMember('jennifer')">
+      <div class="p-init">JY</div>
+      <div class="p-name">Jennifer York MSN RN</div>
+      <div class="p-role">DNP Candidate</div>
+    </div>
+    <div class="p-card" id="pc-rachelle" onclick="loadMember('rachelle')">
+      <div class="p-init">RB</div>
+      <div class="p-name">Rachelle Babler</div>
+      <div class="p-role">TEDx Coach</div>
+    </div>
+    <div class="p-card" id="pc-stacy" onclick="loadMember('stacy')">
+      <div class="p-init">SS</div>
+      <div class="p-name">Stacy Self INHC</div>
+      <div class="p-role">Integrative Health Coach</div>
+    </div>
+  </div>
+</div>
+<div class="profile-bar" id="profile-bar">
+  <div class="pb-name" id="pb-name"></div>
+  <div class="pb-bio" id="pb-bio"></div>
+</div>
+
+<div class="tool-outer" id="tool">
+  <div class="tool-wrap">
+    <div class="tool-panel">
+      <div class="tool-lbl">Condition query &middot; editable</div>
+      <textarea class="tool-qarea" id="query" rows="7" placeholder="Describe the condition — mechanisms, history, symptoms, what has been tried. The more specific, the more precise the geometry."></textarea>
+      <div class="tool-lbl" style="border-top:1px solid var(--lgray)">Candidates &middot; editable</div>
+      <div class="tool-cands">
+        <div id="t-rows"></div>
+        <button class="add-t-btn" onclick="addT('')">+ Add treatment</button>
+      </div>
+      <div class="run-bar">
+        <button id="run-btn" onclick="runQuery()">
+          Compute coherence &rarr;
+        </button>
+      </div>
+    </div>
+    <div class="tool-panel" style="border-right:none;">
+      <div class="tool-lbl">Results</div>
+      <div id="results">
+        <div class="r-empty">
+          <div class="r-empty-glyph">&mdash;</div>
+          <div class="r-empty-txt">Select a profile above<br>or enter your own condition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-hdr">
+  <div class="sec-kicker">02 &middot; Live Experiments</div>
+  <h2 class="sec-h">Real questions.<br>Real results.</h2>
+</div>
+<p class="sec-sub">These experiments ran exactly as shown. Edit any query or candidate, then run it yourself.</p>
+
+<div class="exp-outer">
+<div class="exp-card" id="exp-0">
+  <div class="exp-hdr" onclick="toggleExp(0)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Tyler Orion</div>
+      <div class="exp-title">Does the aging curve show up in the geometry?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-0">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-0"><button class="exp-qtab active" onclick="selectQuery(0,0)" id="exp-qtab-0-0">Age 58</button><button class="exp-qtab" onclick="selectQuery(0,1)" id="exp-qtab-0-1">Age 68</button></div>
+        <div class="exp-qpane active" id="exp-qpane-0-0"><textarea class="exp-query-box" id="eq-0a">Adult-onset muscular dystrophy with specific genetic mutations in degenerative muscle disease. Progressive muscle weakness, muscle atrophy, autoimmune markers. Age 58. Seeking: muscle preservation, mitochondrial support, mTOR and autophagy pathways, slowing genetic degeneration.</textarea></div><div class="exp-qpane" id="exp-qpane-0-1"><textarea class="exp-query-box" id="eq-0b">Adult-onset muscular dystrophy with specific genetic mutations in degenerative muscle disease. Progressive muscle weakness, muscle atrophy, autoimmune markers. Age 68. Accumulated cellular senescence, mTOR dysregulation, mitophagy failure. Seeking: autophagy restoration, mTOR suppression, mitochondrial quality control in aging biology.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(0)">Reset</button></div>
+        <div id="exp-cand-list-0"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-0" value="Creatine monohydrate &#8212; muscle energy metabolism, ATP regeneration"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-0" value="Coenzyme Q10 &#8212; mitochondrial electron transport chain, energy production"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-0" value="NAD+ precursors NMN/NR &#8212; mitochondrial biogenesis, sirtuin activation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-0" value="Rapamycin low-dose &#8212; mTOR inhibition, autophagy enhancement"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-0" value="Urolithin A &#8212; mitophagy activation, mitochondrial quality control"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-0" value="Metformin &#8212; AMPK activation, mTOR suppression, aging biology"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-0" value="Spermidine &#8212; autophagy induction, muscle preservation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-0" value="Alpha-lipoic acid &#8212; antioxidant, mitochondrial cofactor"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-0" value="Low-dose Naltrexone &#8212; autoimmune modulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-0" value="Exon skipping therapy &#8212; genetic mutation correction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(0)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(0)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-0" onclick="runExp(0)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-0"></div>
+      </div>
+    </div>
+</div>
+<div class="exp-card" id="exp-1">
+  <div class="exp-hdr" onclick="toggleExp(1)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Rachelle Babler</div>
+      <div class="exp-title">Does framing a question change everything?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-1">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-1"><button class="exp-qtab active" onclick="selectQuery(1,0)" id="exp-qtab-1-0">Tumor biology today</button><button class="exp-qtab" onclick="selectQuery(1,1)" id="exp-qtab-1-1">Building toward year 20</button></div>
+        <div class="exp-qpane active" id="exp-qpane-1-0"><textarea class="exp-query-box" id="eq-1a">Facial nerve schwannoma. Active tumor microenvironment: VEGF angiogenesis, Schwann cell proliferation, NF2 tumor suppressor dysregulation. Post-CyberKnife radiation. Seeking treatments targeting: tumor vasculature, schwann cell proliferation control, anti-tumor activity.</textarea></div><div class="exp-qpane" id="exp-qpane-1-1"><textarea class="exp-query-box" id="eq-1b">14 years post-CyberKnife radiosurgery for facial nerve schwannoma. Long-term survivorship goal: building the biology of 2036. Seeking: nerve sheath longevity, radiation tissue recovery, long-term neuroprotection, surveillance and early detection, sustainable nerve health for the next decade.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(1)">Reset</button></div>
+        <div id="exp-cand-list-1"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-1" value="Aspirin low dose &#8212; anti-VEGF, anti-angiogenic, tumor microenvironment"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-1" value="Bevacizumab &#8212; anti-VEGF antibody, tumor vasculature suppression"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-1" value="Surveillance MRI &#8212; monitoring residual tumor and growth"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-1" value="Hyperbaric oxygen post-radiation &#8212; radiation tissue repair, neovascularization"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-1" value="Alpha-lipoic acid &#8212; neuroprotective antioxidant, nerve sheath"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-1" value="Methylcobalamin B12 &#8212; nerve regeneration, myelin repair"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-1" value="NAD+ precursors &#8212; DNA repair after radiation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-1" value="Vestibular rehabilitation &#8212; balance system retraining"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-1" value="Low-dose Naltrexone &#8212; neuroprotection, neuro-immune modulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-1" value="Omega-3 high dose &#8212; neural membrane integrity"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(1)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(1)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-1" onclick="runExp(1)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-1"></div>
+      </div>
+    </div>
+</div>
+<div class="exp-card" id="exp-2">
+  <div class="exp-hdr" onclick="toggleExp(2)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Janice O'Connor + Dr. Kurisu DO</div>
+      <div class="exp-title">Does the physician layer matter?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-2">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-2"><button class="exp-qtab active" onclick="selectQuery(2,0)" id="exp-qtab-2-0">Patient narrative only</button><button class="exp-qtab" onclick="selectQuery(2,1)" id="exp-qtab-2-1">With Dr. Kurisu's clinical findings</button></div>
+        <div class="exp-qpane active" id="exp-qpane-2-0"><textarea class="exp-query-box" id="eq-2a">Incomplete spinal cord injury (C4/C1) from air emboli in 2010. Right-sided paralysis, 12+ years recovery. Ongoing motor and sensory deficits. Making progress through osteopathic treatment and neuro-rehab. Seeking: nerve regeneration, neuroplasticity, motor relearning, autonomic recovery.</textarea></div><div class="exp-qpane" id="exp-qpane-2-1"><textarea class="exp-query-box" id="eq-2b">Incomplete spinal cord injury (C4/C1) from air emboli in 2010. Right-sided paralysis, 12+ years recovery. Dr. Kurisu DO clinical findings: somatic dysfunction T4-T6, dorsal vagal collapse pattern, craniosacral rhythm asymmetry 8 cycles/min, restricted atlanto-occipital junction. Vagal tone compromised. Seeking: craniosacral normalization, vagal nerve restoration, autonomic rebalancing.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(2)">Reset</button></div>
+        <div id="exp-cand-list-2"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-2" value="Hyperbaric oxygen &#8212; neuroprotection, axonal repair, angiogenesis"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-2" value="Craniosacral therapy &#8212; craniosacral rhythm normalization, somatic dysfunction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-2" value="Osteopathic manipulative treatment &#8212; fascial release, neurological integration"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-2" value="Transcutaneous vagal nerve stimulation &#8212; vagal tone restoration, autonomic balance"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-2" value="Functional electrical stimulation FES &#8212; neuromuscular re-education"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-2" value="Low-dose Naltrexone &#8212; neuroinflammation reduction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-2" value="Methylcobalamin B12 &#8212; axonal regeneration, myelin repair"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-2" value="Transcranial magnetic stimulation &#8212; cortical reorganization"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-2" value="VIP neuro-rehabilitation &#8212; plasticity-driven motor relearning"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-2" value="Somatic trauma therapy &#8212; dorsal vagal system, nervous system regulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(2)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(2)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-2" onclick="runExp(2)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-2"></div>
+      </div>
+    </div>
+</div>
+<div class="exp-card" id="exp-3">
+  <div class="exp-hdr" onclick="toggleExp(3)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Jennifer York</div>
+      <div class="exp-title">Can wearable data replace the symptom narrative?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-3">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-3"><button class="exp-qtab active" onclick="selectQuery(3,0)" id="exp-qtab-3-0">Raw biometrics, no diagnosis</button><button class="exp-qtab" onclick="selectQuery(3,1)" id="exp-qtab-3-1">Symptom narrative</button></div>
+        <div class="exp-qpane active" id="exp-qpane-3-0"><textarea class="exp-query-box" id="eq-3a">Oura ring data: HRV 28ms vs personal baseline of 44ms (36% drop). Resting heart rate 72 vs 58 baseline. Deep sleep 18% vs 24% baseline. SpO2 nocturnal dips to 93%. Patterns consistent and not explained by activity level. Inflammatory load and immune activation suggested by biometric pattern.</textarea></div><div class="exp-qpane" id="exp-qpane-3-1"><textarea class="exp-query-box" id="eq-3b">Lyme disease + Bartonella + Babesia triple co-infection. Symptoms: brain fog, visual disturbances, extreme fatigue, neck pain. On Doxycycline + Atovaquone + Azithromycin. Seeking supportive treatments compatible with antibiotics.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(3)">Reset</button></div>
+        <div id="exp-cand-list-3"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-3" value="Low-dose Naltrexone &#8212; nocturnal endorphin pulse, immune modulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-3" value="Melatonin therapeutic dose &#8212; nocturnal immune activation, circadian regulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-3" value="Oura-guided sleep optimization &#8212; HRV recovery, deep sleep restoration"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-3" value="Cold exposure &#8212; HRV improvement, autonomic regulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-3" value="Doxycycline + Atovaquone + Azithromycin &#8212; tick-borne co-infection protocol"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-3" value="Artemisinin &#8212; Babesia antimalarial, anti-inflammatory"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-3" value="Cat's Claw &#8212; Lyme biofilm, immune modulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-3" value="Glutathione IV &#8212; antioxidant, detoxification, fatigue"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-3" value="MBSR &#8212; HRV improvement, cortisol reduction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-3" value="Phosphatidylcholine IV &#8212; cognitive membrane repair"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(3)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(3)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-3" onclick="runExp(3)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-3"></div>
+      </div>
+    </div>
+</div>
+<div class="exp-card" id="exp-4">
+  <div class="exp-hdr" onclick="toggleExp(4)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Stacy Self</div>
+      <div class="exp-title">What if you describe what failed instead of what's wrong?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-4">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-4"><button class="exp-qtab active" onclick="selectQuery(4,0)" id="exp-qtab-4-0">Framed by what failed</button><button class="exp-qtab" onclick="selectQuery(4,1)" id="exp-qtab-4-1">Standard diagnosis framing</button></div>
+        <div class="exp-qpane active" id="exp-qpane-4-0"><textarea class="exp-query-box" id="eq-4a">Hashimoto's thyroiditis where Levothyroxine (T4-only) failed for 3 years. TPO antibodies unchanged. Fatigue unchanged. Gut symptoms worsened. T4 to T3 conversion impairment suspected. Autoimmune attack ongoing despite suppressed TSH. What addresses the gap between T4 supplementation and actual cellular thyroid function?</textarea></div><div class="exp-qpane" id="exp-qpane-4-1"><textarea class="exp-query-box" id="eq-4b">Hashimoto's thyroiditis. Autoimmune thyroid disease. Fatigue, joint pain, brain fog, gut issues, hormone dysregulation. Seeking thyroid support and autoimmune management.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(4)">Reset</button></div>
+        <div id="exp-cand-list-4"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-4" value="Armour Thyroid T4+T3 &#8212; addresses T4-to-T3 conversion failure"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-4" value="Selenium &#8212; TPO antibody reduction, thyroid antioxidant"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-4" value="Low-dose Naltrexone &#8212; autoimmune modulation, Hashimoto's antibodies"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-4" value="Inositol myo D-chiro blend &#8212; thyroid receptor sensitization"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-4" value="Gut microbiome restoration &#8212; gut-thyroid axis, autoimmune regulation"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-4" value="Vitamin D3 K2 &#8212; immune regulation, autoimmune prevention"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-4" value="Butyrate &#8212; gut barrier repair, T-regulatory cell induction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-4" value="Ashwagandha KSM-66 &#8212; thyroid support, adrenal balance"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-4" value="N-acetyl cysteine NAC &#8212; glutathione, thyroid antioxidant"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-4" value="AIP elimination diet &#8212; autoimmune trigger removal"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(4)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(4)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-4" onclick="runExp(4)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-4"></div>
+      </div>
+    </div>
+</div>
+<div class="exp-card" id="exp-5">
+  <div class="exp-hdr" onclick="toggleExp(5)">
+    <div class="exp-hdr-inner">
+      <div class="exp-who">Tyler Orion</div>
+      <div class="exp-title">Can you test a 2am hypothesis before finding a researcher?</div>
+    </div>
+    <div class="exp-tog" id="exp-tog-5">+</div>
+  </div>
+  <div class="exp-body">
+      <div class="exp-section">
+        <div class="exp-section-label">Query <span class="exp-editable-hint">· select &amp; edit</span></div>
+        <div class="exp-qtabs" id="exp-qtabs-5"><button class="exp-qtab active" onclick="selectQuery(5,0)" id="exp-qtab-5-0">The hypothesis itself</button><button class="exp-qtab" onclick="selectQuery(5,1)" id="exp-qtab-5-1">Plain description</button></div>
+        <div class="exp-qpane active" id="exp-qpane-5-0"><textarea class="exp-query-box" id="eq-5a">Hypothesis: this genetic muscle degeneration mutation operates through mTOR pathway dysregulation and mitophagy failure. Mitochondrial quality control is impaired. mTORC1 is overactivated, suppressing autophagy. Satellite cell regeneration is compromised. Seeking: autophagy restoration, mTORC1 suppression, mitochondrial quality control.</textarea></div><div class="exp-qpane" id="exp-qpane-5-1"><textarea class="exp-query-box" id="eq-5b">Adult-onset muscular dystrophy. Progressive leg weakness, muscle atrophy, losing ability to walk normally. Genetic mutations involved. Seeking anything that might slow progression or preserve muscle.</textarea></div>
+      </div>
+      <div class="exp-section">
+        <div class="exp-section-label">Candidates <span class="exp-editable-hint">· editable</span> <button class="exp-cands-reset" onclick="resetExpCands(5)">Reset</button></div>
+        <div id="exp-cand-list-5"><div class="exp-cand-row"><span class="exp-cand-num">1</span><input class="exp-cand-input exp-ci-5" value="Rapamycin low-dose &#8212; mTORC1 inhibition, autophagy induction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">2</span><input class="exp-cand-input exp-ci-5" value="Urolithin A &#8212; mitophagy activation, mitochondrial quality control"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">3</span><input class="exp-cand-input exp-ci-5" value="Spermidine &#8212; autophagy induction, anti-aging"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">4</span><input class="exp-cand-input exp-ci-5" value="Metformin &#8212; AMPK activation, mTOR suppression"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">5</span><input class="exp-cand-input exp-ci-5" value="CoQ10 &#8212; mitochondrial electron transport, energy"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">6</span><input class="exp-cand-input exp-ci-5" value="Creatine monohydrate &#8212; ATP substrate, muscle energy"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">7</span><input class="exp-cand-input exp-ci-5" value="NAD+ precursors NMN &#8212; sirtuin activation, mitochondrial biogenesis"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">8</span><input class="exp-cand-input exp-ci-5" value="Berberine &#8212; AMPK activation, mTOR suppression"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">9</span><input class="exp-cand-input exp-ci-5" value="Exon skipping therapy &#8212; direct genetic mutation correction"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div><div class="exp-cand-row"><span class="exp-cand-num">10</span><input class="exp-cand-input exp-ci-5" value="Alpha-lipoic acid &#8212; antioxidant, mitochondrial cofactor"><button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(5)">&#215;</button></div></div>
+        <button class="exp-add-cand-btn" onclick="addExpCand(5)">+ Add candidate</button>
+      </div>
+      <div class="exp-section exp-run-section">
+        <button class="exp-run-btn" id="exp-run-5" onclick="runExp(5)">Run &rarr;</button>
+        <div class="exp-results" id="exp-results-5"></div>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="sec-hdr">
+  <div class="sec-kicker">03 &middot; How It Works</div>
+  <h2 class="sec-h">Geometry,<br>not guessing.</h2>
+</div>
+<p class="sec-sub">ARBITER measures semantic coherence &mdash; geometric relationships in 72-dimensional space. No training on outcomes. No probability. No hallucination surface.</p>
+<div class="how-outer">
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="how-n">01 &middot; Query</div>
+      <div class="how-title">Describe the condition</div>
+      <div class="how-desc">Not just the diagnosis. The mechanisms, history, symptoms, what&rsquo;s been tried. The more precise the query, the more precise the geometry.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">02 &middot; Candidates</div>
+      <div class="how-title">Name what you want ranked</div>
+      <div class="how-desc">Treatments, supplements, protocols, hypotheses. The engine doesn&rsquo;t know which are &ldquo;right&rdquo; &mdash; it measures geometric fit to your condition description.</div>
+    </div>
+    <div class="how-card">
+      <div class="how-n">03 &middot; Score</div>
+      <div class="how-title">The geometry returns a float</div>
+      <div class="how-desc">Between 0 and 1. Not a recommendation. Not medical advice. A coherence score you bring to your care team as a starting point for conversation.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">Actual General Intelligence &nbsp;&middot;&nbsp; Project Apollo</div>
+  <div class="footer-legal">
+    UEI: EAAVJBNPM379 &middot; EIN: 41-4469378<br>
+    Not medical advice. Scores are geometric coherence measurements only.
+  </div>
+</footer>
+
+<script>
+const MEMBERS = {
+  tyler:{
+    name:"Tyler Orion",role:"MBA · PHE Co-Founder · Former Professional Dancer",
+    bio:"In 2007, overnight, her legs stopped working. Adult-onset muscular dystrophy + spinal stenosis (4 surgeries) + unstudied genetic mutations. Seen at NIH.",
+    query:"Adult-onset muscular dystrophy (likely, not officially diagnosed), complicated by spinal stenosis with 4 surgeries. Specific genetic mutations implicated in degenerative muscle disease, not yet well-studied. Symptoms: progressive muscle weakness beginning in legs, muscle softening and atrophy, loss of automatic movement requiring conscious effort to ambulate. Multiple autoimmune symptoms. Seen muscle specialists at NIH. Seeking approaches for: muscle preservation, nerve-muscle junction function, mitochondrial support, autoimmune component, genetic mutation-driven degeneration.",
+    treatments:["Creatine monohydrate — muscle energy metabolism, ATP regeneration, may slow muscle atrophy in dystrophies","Coenzyme Q10 — mitochondrial electron transport chain support, energy production in muscle cells","NAD+ precursors NMN/NR — mitochondrial biogenesis, sirtuin activation, muscle maintenance","Rapamycin low-dose — mTOR pathway modulation, autophagy enhancement, muscle protein homeostasis","Exon skipping therapy — genetic mutation correction approach for dystrophies","Urolithin A — mitophagy activation, muscle regeneration, mitochondrial quality control","Spermidine — autophagy induction, anti-aging, muscle preservation","Metformin — AMPK activation, mTOR suppression, aging biology","Alpha-lipoic acid — antioxidant, mitochondrial cofactor, neuroprotective","Low-dose Naltrexone — autoimmune modulation, neuroinflammation reduction"]
+  },
+  janice:{
+    name:"Janice O'Connor",role:"Project Apollo Pioneer · 12yr Recovery",
+    bio:"2010: radiofrequency ablation caused spinal cord injury via air emboli at C4/C1. Complete right-sided paralysis. Fought 8 hours for neck scan. Fought for hyperbaric. 12+ years ongoing — still gaining.",
+    query:"Incomplete spinal cord injury (cervical C4/C1) from air emboli following radiofrequency ablation in 2010. Initial complete right-sided paralysis, arm and leg. Treated with hyperbaric oxygen with significant initial recovery. Post-acute: 5 weeks inpatient rehab, 12+ years outpatient neuro-rehab. Making ongoing progress through osteopathic treatment and VIP neuro-rehab. Seeking: continued nerve regeneration, spinal cord neuroplasticity, motor re-learning, spasticity reduction, functional recovery beyond standard plateau.",
+    treatments:["Hyperbaric oxygen maintenance — neuroprotection, axonal repair, angiogenesis","Osteopathic manipulative treatment — fascial release, neurological integration","VIP neuro-rehabilitation — activity-based therapy, plasticity-driven motor relearning","Methylcobalamin B12 injections — axonal regeneration, myelin repair","Functional electrical stimulation FES/NMES — neuromuscular re-education","Craniosacral therapy — nervous system regulation, somatic dysfunction release","Transcutaneous vagal nerve stimulation — vagal tone, autonomic balance","Low-dose Naltrexone — neuroinflammation reduction, nerve repair support","Transcranial magnetic stimulation — cortical reorganization, motor pathway reactivation","Granulocyte colony-stimulating factor — neural stem cell mobilization"]
+  },
+  dennis:{
+    name:"Dennis O'Connor",role:"Primary Caregiver · 12yr · Janice's Husband",
+    bio:"Prostate cancer 2009, cardiac stents for 95% blockage 2012, secondary PTSD from caregiving. Transformed via MBSR, yoga, vegetarian diet, integrative medicine.",
+    query:"Male, primary caregiver for spouse with spinal cord injury for 12+ years. Medical history: prostate cancer 2009 treated, cardiac stents 2012 for 95% coronary blockage. Secondary PTSD and caregiver burnout. Successful transformation through MBSR, yoga, vegetarian diet, integrative medicine. Current focus: cardiac maintenance, cancer surveillance, PTSD management, sustainable caregiving capacity, longevity.",
+    treatments:["Cardiac rehabilitation maintenance — coronary health after stenting","CoQ10 ubiquinol — cardiac mitochondrial support post-stent","MBSR mindfulness — PTSD, caregiver stress, cortisol regulation","Somatic trauma therapy — secondary PTSD, nervous system regulation","Plant-based nutrition — cardiac and cancer prevention, anti-inflammatory","Vitamin D3 K2 — cardiovascular health, cancer surveillance support","Ashwagandha — cortisol regulation, stress resilience, adrenal support","Sleep optimization — recovery, immune function, PTSD symptom reduction","Omega-3 fatty acids — cardiac anti-inflammatory, triglyceride reduction","PSA surveillance protocol — prostate cancer monitoring"]
+  },
+  jennifer:{
+    name:"Jennifer York MSN RN",role:"DNP Candidate · Nurse Scientist",
+    bio:"Designed her own personalized immunotherapy for stage 3 malignant phyllodes tumor — now in remission 3 years. Currently managing Lyme + Bartonella + Babesia triple co-infection.",
+    query:"Complex multi-system condition: Stage 3 malignant phyllodes tumor breast cancer, remission 3 years. Monitoring for recurrence. Recent: Lyme disease (Borrelia burgdorferi), Bartonella henselae, Babesia microti triple co-infection. Symptoms: brain fog, visual disturbances, extreme fatigue, neck pain. HRV tracking via Oura ring: HRV 28ms vs 44ms baseline, resting HR 72 vs 58, deep sleep 18% vs 24%, SpO2 nocturnal dips to 93%. Need: triple co-infection treatment compatible with cancer remission immune status, fatigue management, neuroprotection for cognitive symptoms.",
+    treatments:["Doxycycline + Atovaquone + Azithromycin — triple co-infection combination","Cat's Claw Uncaria tomentosa — Lyme biofilm, immune modulation, safe with remission","Low-dose Naltrexone — immune modulation, safe with cancer remission history","Artemisinin — Babesia antimalarial activity, anti-inflammatory","Cryptolepis sanguinolenta — Babesia and Bartonella herbal protocol","Phosphatidylcholine IV — cognitive function, membrane repair, brain fog","Glutathione IV — detox, antioxidant, fatigue reduction","Melatonin therapeutic — immune surveillance, anti-tumor, nocturnal immune pulse","Oura-guided sleep optimization — recovery tracking, immune function","MBSR — HRV improvement, immune regulation, fear-of-recurrence"]
+  },
+  rachelle:{
+    name:"Rachelle Babler",role:"TEDx Coach · Former Paramedic",
+    bio:"Facial nerve schwannoma during pregnancy (1% of brain tumors). Fought for her own MRI. Won her own insurance appeal. CyberKnife radiation. 14 years post-diagnosis.",
+    query:"Facial nerve schwannoma — rare benign tumor of the facial nerve sheath (1% of brain tumors), presenting with severe vertigo during pregnancy. Treated with CyberKnife stereotactic radiosurgery 14 years ago. Currently in long-term monitoring. Concerns: facial nerve function preservation, tumor recurrence, vestibular and balance system, radiation tissue effects. Seeking: nerve sheath health, radiation tissue recovery, adjacent cranial nerve monitoring, post-radiosurgery neuro-support.",
+    treatments:["Surveillance MRI protocol — residual and recurrent growth monitoring","Bevacizumab anti-VEGF — for actively growing schwannomas","Hyperbaric oxygen post-radiation — radiation tissue injury repair","Alpha-lipoic acid — neuroprotective antioxidant, nerve sheath health","Methylcobalamin B12 — nerve regeneration, myelin repair","Vestibular rehabilitation — balance retraining, compensatory adaptation","Low-dose Naltrexone — neuroprotection, anti-inflammatory","NAD+ precursors NMN — DNA repair after radiation, mitochondrial nerve support","Aspirin low dose — tumor microenvironment, anti-VEGF effect","Omega-3 high dose — neural membrane integrity, anti-inflammatory"]
+  },
+  stacy:{
+    name:"Stacy Self",role:"INHC · Integrative Nutritional Health Coach",
+    bio:"Misdiagnosed with postpartum depression for years. Actually Hashimoto's. Daily opioids, predicted wheelchair by 40. Detoxed off opioids (6mo) and antidepressants (2+ years) via integrative medicine.",
+    query:"Hashimoto's thyroiditis — autoimmune thyroid disease, diagnosed after years of misdiagnosis as postpartum depression. History: severe joint pain requiring daily opioids, chronic inflammation, predicted joint deterioration. Successfully transitioned off opioids (6 months) and antidepressants (2+ years) via integrative approach. Currently managing: autoimmune activity, flare prevention, gut-thyroid axis, hormone dysregulation, chronic inflammation, adrenal support. Strong response to: clean eating, lifestyle modification, gut microbiome intervention, stress reduction.",
+    treatments:["Selenium — thyroid peroxidase antibody reduction, Hashimoto's evidence","Armour Thyroid T4+T3 — thyroid hormone with T3 conversion support","Low-dose Naltrexone — autoimmune modulation, Hashimoto's antibody reduction","Gut microbiome restoration probiotics prebiotics SCFA — gut-thyroid axis","Inositol myo D-chiro blend — thyroid receptor sensitization","Vitamin D3 K2 therapeutic — immune regulation, autoimmune prevention","Ashwagandha KSM-66 — thyroid support, adrenal balance, stress resilience","N-acetyl cysteine NAC — glutathione precursor, thyroid antioxidant, gut lining","Butyrate — gut barrier repair, autoimmune T-reg induction","AIP elimination diet — trigger removal, autoimmune inflammation reduction"]
+  }
+};
+
+const EXP_CANDIDATES = [
+  ["Creatine monohydrate — muscle energy metabolism, ATP regeneration","Coenzyme Q10 — mitochondrial electron transport chain, energy production","NAD+ precursors NMN/NR — mitochondrial biogenesis, sirtuin activation","Rapamycin low-dose — mTOR inhibition, autophagy enhancement","Urolithin A — mitophagy activation, mitochondrial quality control","Metformin — AMPK activation, mTOR suppression, aging biology","Spermidine — autophagy induction, muscle preservation","Alpha-lipoic acid — antioxidant, mitochondrial cofactor","Low-dose Naltrexone — autoimmune modulation","Exon skipping therapy — genetic mutation correction"],
+  ["Aspirin low dose — anti-VEGF, anti-angiogenic, tumor microenvironment","Bevacizumab — anti-VEGF antibody, tumor vasculature suppression","Surveillance MRI — monitoring residual tumor and growth","Hyperbaric oxygen post-radiation — radiation tissue repair, neovascularization","Alpha-lipoic acid — neuroprotective antioxidant, nerve sheath","Methylcobalamin B12 — nerve regeneration, myelin repair","NAD+ precursors — DNA repair after radiation","Vestibular rehabilitation — balance system retraining","Low-dose Naltrexone — neuroprotection, neuro-immune modulation","Omega-3 high dose — neural membrane integrity"],
+  ["Hyperbaric oxygen — neuroprotection, axonal repair, angiogenesis","Craniosacral therapy — craniosacral rhythm normalization, somatic dysfunction","Osteopathic manipulative treatment — fascial release, neurological integration","Transcutaneous vagal nerve stimulation — vagal tone restoration, autonomic balance","Functional electrical stimulation FES — neuromuscular re-education","Low-dose Naltrexone — neuroinflammation reduction","Methylcobalamin B12 — axonal regeneration, myelin repair","Transcranial magnetic stimulation — cortical reorganization","VIP neuro-rehabilitation — plasticity-driven motor relearning","Somatic trauma therapy — dorsal vagal system, nervous system regulation"],
+  ["Low-dose Naltrexone — nocturnal endorphin pulse, immune modulation","Melatonin therapeutic dose — nocturnal immune activation, circadian regulation","Oura-guided sleep optimization — HRV recovery, deep sleep restoration","Cold exposure — HRV improvement, autonomic regulation","Doxycycline + Atovaquone + Azithromycin — tick-borne co-infection protocol","Artemisinin — Babesia antimalarial, anti-inflammatory","Cat's Claw — Lyme biofilm, immune modulation","Glutathione IV — antioxidant, detoxification, fatigue","MBSR — HRV improvement, cortisol reduction","Phosphatidylcholine IV — cognitive membrane repair"],
+  ["Armour Thyroid T4+T3 — addresses T4-to-T3 conversion failure","Selenium — TPO antibody reduction, thyroid antioxidant","Low-dose Naltrexone — autoimmune modulation, Hashimoto's antibodies","Inositol myo D-chiro blend — thyroid receptor sensitization","Gut microbiome restoration — gut-thyroid axis, autoimmune regulation","Vitamin D3 K2 — immune regulation, autoimmune prevention","Butyrate — gut barrier repair, T-regulatory cell induction","Ashwagandha KSM-66 — thyroid support, adrenal balance","N-acetyl cysteine NAC — glutathione, thyroid antioxidant","AIP elimination diet — autoimmune trigger removal"],
+  ["Rapamycin low-dose — mTORC1 inhibition, autophagy induction","Urolithin A — mitophagy activation, mitochondrial quality control","Spermidine — autophagy induction, anti-aging","Metformin — AMPK activation, mTOR suppression","CoQ10 — mitochondrial electron transport, energy","Creatine monohydrate — ATP substrate, muscle energy","NAD+ precursors NMN — sirtuin activation, mitochondrial biogenesis","Berberine — AMPK activation, mTOR suppression","Exon skipping therapy — direct genetic mutation correction","Alpha-lipoic acid — antioxidant, mitochondrial cofactor"]
+];
+
+let tIdx = 0;
+
+function addT(v) {
+  const c = document.getElementById('t-rows'), i = tIdx++;
+  const d = document.createElement('div');
+  d.className = 't-row'; d.id = 'tr-' + i;
+  d.innerHTML = '<textarea class="ti" id="t-' + i + '" rows="1" placeholder="Treatment / supplement / protocol...">' + v + '</textarea><button class="t-del" onclick="document.getElementById(\'tr-' + i + '\').remove()">x</button>';
+  c.appendChild(d);
+}
+
+function getTs() {
+  return Array.from(document.querySelectorAll('.ti')).map(function(e){ return e.value.trim(); }).filter(Boolean);
+}
+
+function loadMember(k) {
+  var m = MEMBERS[k];
+  if (!m) return;
+  document.querySelectorAll('.p-card').forEach(function(c){ c.classList.remove('active'); });
+  document.getElementById('pc-' + k).classList.add('active');
+  document.getElementById('pb-name').textContent = m.name + ' — ' + m.role;
+  document.getElementById('pb-bio').textContent = m.bio;
+  document.getElementById('profile-bar').classList.add('show');
+  document.getElementById('query').value = m.query;
+  document.getElementById('t-rows').innerHTML = '';
+  tIdx = 0;
+  m.treatments.forEach(function(t){ addT(t); });
+  document.getElementById('results').innerHTML = '<div class="r-empty"><div class="r-empty-glyph">&#9675;</div><div class="r-empty-txt">Loaded: ' + m.name + '.<br>Review and compute.</div></div>';
+  document.getElementById('tool').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function sc(s){ return s >= 0.55 ? 'hi' : s >= 0.32 ? 'med' : 'lo'; }
+function bc(s){ return s >= 0.55 ? '' : s >= 0.32 ? ' med' : ' lo'; }
+
+async function callAPI(query, candidates) {
+  var res = await fetch('https://api.arbiter.traut.ai/public/compare', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({query: query, candidates: candidates})
+  });
+  if (!res.ok) throw new Error('API ' + res.status);
+  var data = await res.json();
+  return (data.all || data.results || (Array.isArray(data) ? data : [])).sort(function(a,b){ return b.score - a.score; });
+}
+
+function renderResults(results, container, maxItems) {
+  var max = maxItems || results.length;
+  var maxS = Math.max.apply(null, results.map(function(r){ return Math.abs(r.score); }).concat([0.001]));
+  var html = '';
+  results.slice(0, max).forEach(function(r, i) {
+    var txt = r.text || r.candidate || '';
+    var s = r.score;
+    var bw = Math.round(Math.abs(s) / maxS * 100);
+    html += '<div class="' + (maxItems ? 'exp-r-item' : 'r-item') + '" style="animation-delay:' + (i*28) + 'ms">';
+    html += '<div class="' + (maxItems ? 'exp-r-row' : 'r-row') + '">';
+    html += '<div class="' + (maxItems ? 'exp-r-num' : 'r-num') + (i===0?' first':'') + '">' + (i+1) + '</div>';
+    html += '<div class="' + (maxItems ? 'exp-r-text' : 'r-text') + (i===0?' first':'') + '">' + txt + '</div>';
+    html += '<div class="' + (maxItems ? 'exp-r-score' : 'r-score') + ' ' + sc(s) + '">' + s.toFixed(3) + '</div>';
+    html += '</div>';
+    html += '<div class="' + (maxItems ? 'exp-r-bar' : 'r-bar') + '"><div class="' + (maxItems ? 'exp-r-fill' : 'r-fill') + bc(s) + '" style="width:' + bw + '%"></div></div>';
+    html += '</div>';
+  });
+  container.innerHTML = html;
+}
+
+async function runQuery() {
+  var q = document.getElementById('query').value.trim();
+  var ts = getTs();
+  if (!q || ts.length < 2) { alert('Enter your condition and at least 2 treatments.'); return; }
+  var btn = document.getElementById('run-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner"></div>';
+  var out = document.getElementById('results');
+  var t0 = Date.now();
+  out.innerHTML = '<div class="r-empty"><div class="r-empty-glyph" style="font-size:32px">&#9675;</div><div class="r-empty-txt">Computing...</div></div>';
+  try {
+    var results = await callAPI(q, ts);
+    var elapsed = Date.now() - t0;
+    var key = document.querySelector('.p-card.active');
+    var mName = key ? MEMBERS[key.id.replace('pc-','')].name : 'Results';
+    var html = '<div class="r-head"><div class="r-head-name">' + mName + '</div><div class="r-head-meta">' + elapsed + 'ms &middot; ' + ts.length + '</div></div>';
+    out.innerHTML = html;
+    var wrap = document.createElement('div');
+    out.appendChild(wrap);
+    renderResults(results, wrap, null);
+    var top = results[0];
+    var hi = results.filter(function(r){ return r.score >= 0.55; }).length;
+    var sum = document.createElement('div');
+    sum.className = 'r-summary';
+    sum.innerHTML = '<strong>#1: ' + (top.text || top.candidate || '') + '</strong> — ' + top.score.toFixed(3) + '.' + (hi > 1 ? ' ' + hi + ' treatments above 0.55.' : '') + ' Bring to your care team.';
+    out.appendChild(sum);
+    if (window.innerWidth < 768) {
+      document.getElementById('results-wrap').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  } catch(e) {
+    out.innerHTML = '<div class="r-empty"><div class="r-empty-txt" style="color:#c00">Error: ' + e.message + '</div></div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Run Analysis <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+  }
+}
+
+function toggleExp(n) {
+  var card = document.getElementById('exp-' + n);
+  var isOpen = card.classList.contains('open');
+  document.querySelectorAll('.exp-card').forEach(function(c){ c.classList.remove('open'); });
+  if (!isOpen) card.classList.add('open');
+}
+
+function selectQuery(n, i) {
+  var tabs = document.querySelectorAll('#exp-qtabs-' + n + ' .exp-qtab');
+  var panes = document.querySelectorAll('#exp-' + n + ' .exp-qpane');
+  tabs.forEach(function(t,j){ t.classList.toggle('active', j===i); });
+  panes.forEach(function(p,j){ p.classList.toggle('active', j===i); });
+}
+
+function renumCands(n) {
+  var rows = document.querySelectorAll('#exp-cand-list-' + n + ' .exp-cand-row');
+  rows.forEach(function(r, i){ r.querySelector('.exp-cand-num').textContent = i+1; });
+}
+
+function resetExpCands(n) {
+  var list = document.getElementById('exp-cand-list-' + n);
+  list.innerHTML = EXP_CANDIDATES[n].map(function(c, i) {
+    return '<div class="exp-cand-row">' +
+      '<span class="exp-cand-num">' + (i+1) + '</span>' +
+      '<input class="exp-cand-input exp-ci-' + n + '" value="' + c.replace(/"/g, '&quot;').replace(/—/g, '&#8212;') + '">' +
+      '<button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(' + n + ')">&#215;</button>' +
+      '</div>';
+  }).join('');
+}
+
+function addExpCand(n) {
+  var list = document.getElementById('exp-cand-list-' + n);
+  var count = list.querySelectorAll('.exp-cand-row').length;
+  var row = document.createElement('div');
+  row.className = 'exp-cand-row';
+  row.innerHTML = '<span class="exp-cand-num">' + (count+1) + '</span>' +
+    '<input class="exp-cand-input exp-ci-' + n + '" placeholder="Treatment / supplement / protocol...">' +
+    '<button class="exp-cand-del" onclick="this.parentElement.remove();renumCands(' + n + ')">&#215;</button>';
+  list.appendChild(row);
+  row.querySelector('input').focus();
+}
+
+function getExpCands(n) {
+  return Array.from(document.querySelectorAll('.exp-ci-' + n))
+    .map(function(el){ return el.value.trim(); }).filter(Boolean);
+}
+
+async function runExp(n) {
+  var activePaneEl = document.querySelector('#exp-' + n + ' .exp-qpane.active textarea');
+  var query = activePaneEl ? activePaneEl.value.trim() : '';
+  var candidates = getExpCands(n);
+  if (!query) { alert('Query is empty.'); return; }
+  if (candidates.length < 2) { alert('Add at least 2 candidates.'); return; }
+  var btn = document.getElementById('exp-run-' + n);
+  var resultsEl = document.getElementById('exp-results-' + n);
+  btn.disabled = true;
+  btn.innerHTML = '<div class="spinner" style="width:12px;height:12px;border-width:2px;display:inline-block;vertical-align:middle"></div>';
+  resultsEl.innerHTML = '';
+  try {
+    var results = await callAPI(query, candidates);
+    renderResults(results, resultsEl, 5);
+  } catch(e) {
+    resultsEl.innerHTML = '<div style="font:400 11px/1.6 var(--mono);color:#c00;padding:8px 0">Error: ' + e.message + '</div>';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Run &rarr;';
+  }
+}
+
+
+addT(''); addT(''); addT('');
+
+
+
+</script>
+</body>
+</html>
